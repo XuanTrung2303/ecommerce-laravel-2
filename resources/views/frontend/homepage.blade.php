@@ -1,4 +1,4 @@
-@extends('frontend.user');
+@extends('layouts.frontend')
 
 @section('content')
     <!-- Categories Section Begin -->

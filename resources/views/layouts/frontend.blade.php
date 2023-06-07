@@ -28,11 +28,10 @@
     <div id="preloder">
         <div class="loader"></div>
     </div>
-
-    @include('inc.navigation_user');
-    @include('inc.header_user');
-    @yield('content');
-    @include('inc.footer_user');
+    @include('layouts.inc.navigation_user')
+    @include('layouts.inc.header_user')
+    @yield('content')
+    @include('layouts.inc.footer_user')
 
     <!-- Js Plugins -->
     <script src="{{ asset('frontend/js/jquery-3.3.1.min.js') }}"></script>
