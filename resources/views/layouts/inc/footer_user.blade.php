@@ -5,12 +5,12 @@
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="footer__about">
                         <div class="footer__about__logo">
-                            <a href="./index.html"><img src="img/logo.png" alt=""></a>
+                            <a href="./index.html"><img src="{{ asset('frontend/img/logo.png') }}" alt=""></a>
                         </div>
                         <ul>
-                            <li>Address: 60-49 Road 11378 New York</li>
-                            <li>Phone: +65 11.188.888</li>
-                            <li>Email: hello@colorlib.com</li>
+                            <li>Address: Duong Van Nga Street Viet Nam</li>
+                            <li>Phone: +84 0288.000.000</li>
+                            <li>Email:oganic@colorlib.com</li>
                         </ul>
                     </div>
                 </div>
@@ -57,14 +57,12 @@
                     <div class="footer__copyright">
                         <div class="footer__copyright__text">
                             <p>
-                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                                 Copyright &copy;
                                 <script>
                                     document.write(new Date().getFullYear());
                                 </script> All rights reserved | This template is made with <i
-                                    class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com"
-                                    target="_blank">Colorlib</a>
-                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                    class="fa fa-heart" aria-hidden="true"></i> by <a
+                                    href="https://www.facebook.com/castrichmauxanh" target="_blank">Gnurt</a>
                             </p>
                         </div>
                         <div class="footer__copyright__payment"><img src="img/payment-item.png" alt=""></div>

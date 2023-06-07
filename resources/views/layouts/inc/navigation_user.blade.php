@@ -12,23 +12,41 @@
             <div class="header__cart__price">item: <span>$150.00</span></div>
         </div>
         <div class="humberger__menu__widget">
-            <div class="header__top__right__language">
-                <img src="{{ asset('frontend/img/language.png') }}" alt="">
-                <div>English</div>
-                <span class="arrow_carrot-down"></span>
-                <ul>
-                    <li><a href="#">Spanis</a></li>
-                    <li><a href="#">English</a></li>
-                </ul>
-            </div>
-            <div class="header__top__right__auth">
-                <a href="#"><i class="fa fa-user"></i> Login</a>
-            </div>
+            @guest()
+                <div class="header__top__right">
+                    <div class="header__top__right__language header__top__right__auth">
+                        <a class="d-line" href="{{ route('login') }}"><i class="fa fa-user"></i>
+                            Login</a>
+                    </div>
+                    <div class="header__top__right__auth">
+                        <a href="{{ route('register') }}"><i class="fa fa-user"></i> Register</a>
+                    </div>
+                </div>
+            @else
+                <div class="header__top__right">
+                    <div class="header__top__right__language header__top__right__auth ">
+                        <div><a class="d-line" href="#"><i class="fa fa-user"></i>
+                                {{ auth()->user()->name }}</a></div>
+                        <span class="arrow_carrot-down"></span>
+                        <ul>
+                            <li><a href="#">Profile</a></li>
+                        </ul>
+                    </div>
+                    <div class="header__top__right__auth">
+                        <a href="#"
+                            onclick="event.preventDefault();document.getElementById('logout-form').submit()"><i
+                                class="fa fa-user"></i> Logout</a>
+                        <form action="{{ route('logout') }}" id="logout-form" method="post">
+                            @csrf
+                        </form>
+                    </div>
+                </div>
+            @endguest
         </div>
         <nav class="humberger__menu__nav mobile-menu">
             <ul>
-                <li class="active"><a href="./index.html">Home</a></li>
-                <li><a href="./shop-grid.html">Shop</a></li>
+                <li class="active"><a href="{{ route('homepage') }}">Home</a></li>
+                <li><a href="{{ route('shop.index') }}">Shop</a></li>
                 <li><a href="#">Pages</a>
                     <ul class="header__menu__dropdown">
                         <li><a href="./shop-details.html">Shop Details</a></li>
@@ -50,7 +68,7 @@
         </div>
         <div class="humberger__menu__contact">
             <ul>
-                <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
+                <li><i class="fa fa-envelope"></i> oganic@colorlib.com</li>
                 <li>Free Shipping for all Order of $99</li>
             </ul>
         </div>
