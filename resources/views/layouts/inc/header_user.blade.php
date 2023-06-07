@@ -12,26 +12,36 @@
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6">
-                        <div class="header__top__right">
-                            <div class="header__top__right__social">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-linkedin"></i></a>
-                                <a href="#"><i class="fa fa-pinterest-p"></i></a>
+                        @guest()
+                            <div class="header__top__right">
+                                <div class="header__top__right__language header__top__right__auth">
+                                    <a class="d-line" href="{{ route('login') }}"><i class="fa fa-user"></i>
+                                        Login</a>
+                                </div>
+                                <div class="header__top__right__auth">
+                                    <a href="{{ route('register') }}"><i class="fa fa-user"></i> Register</a>
+                                </div>
                             </div>
-                            <div class="header__top__right__language">
-                                <img src="img/language.png" alt="">
-                                <div>English</div>
-                                <span class="arrow_carrot-down"></span>
-                                <ul>
-                                    <li><a href="#">Spanis</a></li>
-                                    <li><a href="#">English</a></li>
-                                </ul>
+                        @else
+                            <div class="header__top__right">
+                                <div class="header__top__right__language header__top__right__auth ">
+                                    <div><a class="d-line" href="#"><i class="fa fa-user"></i>
+                                            {{ auth()->user()->name }}</a></div>
+                                    <span class="arrow_carrot-down"></span>
+                                    <ul>
+                                        <li><a href="#">Profile</a></li>
+                                    </ul>
+                                </div>
+                                <div class="header__top__right__auth">
+                                    <a href="#"
+                                        onclick="event.preventDefault();document.getElementById('logout-form').submit()"><i
+                                            class="fa fa-user"></i> Logout</a>
+                                    <form action="{{ route('logout') }}" id="logout-form" method="post">
+                                        @csrf
+                                    </form>
+                                </div>
                             </div>
-                            <div class="header__top__right__auth">
-                                <a href="#"><i class="fa fa-user"></i> Login</a>
-                            </div>
-                        </div>
+                        @endguest
                     </div>
                 </div>
             </div>
