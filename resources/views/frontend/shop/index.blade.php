@@ -27,17 +27,21 @@
                     <div class="sidebar">
                         <div class="sidebar__item">
                             <h4>Department</h4>
-                            <ul>
-                                <li><a href="#">Fresh Meat</a></li>
-                                <li><a href="#">Vegetables</a></li>
-                                <li><a href="#">Fruit & Nut Gifts</a></li>
-                                <li><a href="#">Fresh Berries</a></li>
-                                <li><a href="#">Ocean Foods</a></li>
-                                <li><a href="#">Butter & Eggs</a></li>
-                                <li><a href="#">Fastfood</a></li>
-                                <li><a href="#">Fresh Onion</a></li>
-                                <li><a href="#">Papayaya & Crisps</a></li>
-                                <li><a href="#">Oatmeal</a></li>
+                            <ul class="header__menu__dropdown">
+                                @foreach ($menu_categories as $menu_category)
+                                    <li>
+                                        <a href="{{ route('shop.index', $menu_category->slug) }}">
+                                            {{ $menu_category->name }}
+                                        </a>
+                                        @foreach ($menu_category->children as $children)
+                                    <li class="mx-2">
+                                        <a style="color: #b4b4b4;" href="{{ route('shop.index', $children->slug) }}">
+                                            {{ $children->name }}
+                                        </a>
+                                    </li>
+                                @endforeach
+                                </li>
+                                @endforeach
                             </ul>
                         </div>
                         <div class="sidebar__item">
