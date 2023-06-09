@@ -100,17 +100,13 @@
                             <span>All departments</span>
                         </div>
                         <ul>
-                            <li><a href="#">Fresh Meat</a></li>
-                            <li><a href="#">Vegetables</a></li>
-                            <li><a href="#">Fruit & Nut Gifts</a></li>
-                            <li><a href="#">Fresh Berries</a></li>
-                            <li><a href="#">Ocean Foods</a></li>
-                            <li><a href="#">Butter & Eggs</a></li>
-                            <li><a href="#">Fastfood</a></li>
-                            <li><a href="#">Fresh Onion</a></li>
-                            <li><a href="#">Papayaya & Crisps</a></li>
-                            <li><a href="#">Oatmeal</a></li>
-                            <li><a href="#">Fresh Bananas</a></li>
+                            <ul class="header__menu__dropdown">
+                                @foreach ($menu_categories as $menu_category)
+                                    <li><a
+                                            href="{{ route('shop.index', $menu_category->slug) }}">{{ $menu_category->name }}</a>
+                                    </li>
+                                @endforeach
+                            </ul>
                         </ul>
                     </div>
                 </div>

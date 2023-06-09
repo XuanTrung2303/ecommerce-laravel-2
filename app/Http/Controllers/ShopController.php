@@ -10,4 +10,9 @@ class ShopController extends Controller
     {
         return view('frontend.shop.index');
     }
+
+    public function tag($slug = null)
+    {
+        return view('frontend.shop.index');
+    }
 }
