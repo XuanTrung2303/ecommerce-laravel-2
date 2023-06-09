@@ -101,31 +101,16 @@
                             </div>
                         </div>
                         <div class="sidebar__item">
-                            <h4>Popular Size</h4>
-                            <div class="sidebar__item__size">
-                                <label for="large">
-                                    Large
-                                    <input type="radio" id="large">
-                                </label>
-                            </div>
-                            <div class="sidebar__item__size">
-                                <label for="medium">
-                                    Medium
-                                    <input type="radio" id="medium">
-                                </label>
-                            </div>
-                            <div class="sidebar__item__size">
-                                <label for="small">
-                                    Small
-                                    <input type="radio" id="small">
-                                </label>
-                            </div>
-                            <div class="sidebar__item__size">
-                                <label for="tiny">
-                                    Tiny
-                                    <input type="radio" id="tiny">
-                                </label>
-                            </div>
+                            <h4>Tags</h4>
+                            @foreach ($menu_tags as $menu_tag)
+                                <div class="sidebar__item__size">
+                                    <label for="large">
+                                        <a style="color: black;" href="{{ route('shop.tag', $menu_tag->slug) }}">
+                                            {{ $menu_tag->name }}
+                                        </a>
+                                    </label>
+                                </div>
+                            @endforeach
                         </div>
                         <div class="sidebar__item">
                             <div class="latest-product__text">
