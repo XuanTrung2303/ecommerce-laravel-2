@@ -20,6 +20,7 @@
     <!-- Custom styles for this template-->
     <link href="{{ asset('backend/css/sb-admin-2.min.css') }}" rel="stylesheet">
 
+    @stack('style-alt')
 </head>
 
 <body id="page-top">
@@ -37,7 +38,31 @@
 
                 @include('layouts.partials.navigation_admin')
 
-                @yield('content')
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+                    @if (session()->has('message'))
+                        <div class="alert alert-{{ session()->get('type') }} alert-dismissible fade show">
+                            {{ session()->get('message') }}
+                            <button class="close" type="button" data-dismiss="alert">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    @endif
+                    @if ($errors->any())
+                        <div class="alert alert-danger alert-dismissible fade show">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                            <button class="close" type="button" data-dismiss="alert">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    @endif
+                    @yield('content')
+                </div>
+                <!-- /.container-fluid -->
 
             </div>
             <!-- End of Main Content -->
@@ -93,6 +118,7 @@
     <script src="{{ asset('backend/js/demo/chart-area-demo.js') }}"></script>
     <script src="{{ asset('backend/js/demo/chart-pie-demo.js') }}"></script>
 
+    @stack('script-alt')
 </body>
 
 </html>

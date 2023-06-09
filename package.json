@@ -16,5 +16,8 @@
         "sass": "^1.32.11",
         "sass-loader": "^11.0.1",
         "vite": "^4.3.9"
+    },
+    "dependencies": {
+        "@esbuild/win32-x64": "^0.17.19"
     }
 }
