@@ -15,6 +15,8 @@
                         <tr>
                             <th>No</th>
                             <th>Name</th>
+                            <th>Slug</th>
+                            <th>Product Count</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -23,6 +25,8 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $tag->name }}</td>
+                                <td>{{ $tag->slug }}</td>
+                                <td>{{ $tag->products_count }}</td>
                                 <td>
                                     <div class="btn-group">
                                         <div>
