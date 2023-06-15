@@ -5,12 +5,16 @@ namespace App\Models;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Tag extends Model
+class Product extends Model implements HasMedia
 {
-    use HasFactory, Sluggable;
+    use HasFactory, Sluggable, InteractsWithMedia;
 
     protected $guarded = ['id', 'created_at', 'updated_at'];
+
+    protected $appends = ['gallery'];
 
     /**
      * Return the sluggable configuration array for this model.
@@ -27,8 +31,17 @@ class Tag extends Model
         ];
     }
 
-    public function products()
+    public function getGalleryAttribute()
     {
-        return $this->belongsToMany(Product::class);
+        return $this->getMedia('gallery');
+    }
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
     }
 }

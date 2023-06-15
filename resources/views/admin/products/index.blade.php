@@ -3,8 +3,8 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <h3>Category List
-                <a href="{{ route('admin.categories.create') }}" class="btn btn-primary float-right">Create</a>
+            <h3>Product List
+                <a href="{{ route('admin.products.create') }}" class="btn btn-primary float-right">Create</a>
             </h3>
         </div>
         <div class="card-body">
@@ -15,41 +15,54 @@
                         <tr>
                             <th>No</th>
                             <th>Name</th>
-                            <th>Slug</th>
-                            <th>Product Count</th>
+                            <th>Tag</th>
+                            <th>Category</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
                             <th>Image</th>
-                            <th>Parent</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($categories as $category)
+                        @foreach ($products as $product)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $category->name }}</td>
-                                <td>{{ $category->slug }}</td>
-                                <td>{{ $category->products_count }}</td>
+                                <td>{{ $product->name }}</td>
                                 <td>
-                                    @if ($category->photo)
-                                        <a href="{{ $category->photo->getUrl() }}" target="_blank">
-                                            <img src="{{ $category->photo->getUrl() }}" width="90px" height="90px">
+                                    @foreach ($product->tags as $tag)
+                                        <span class="badge badge-warning">{{ $tag->name }}</span>
+                                    @endforeach
+                                </td>
+                                <td>{{ $product->category->name }}</td>
+                                <td>{{ $product->price }}</td>
+                                <td>{{ $product->quantity }}</td>
+                                <td>
+                                    @if ($product->gallery)
+                                        <a href="{{ $product->gallery->first()->getUrl() }}" target="_blank">
+                                            <img src="{{ $product->gallery->first()->getUrl() }}" width="90px"
+                                                height="90px">
                                         </a>
                                     @else
                                         <span class="badge badge-warning">No Image</span>
                                     @endif
                                 </td>
-                                <td>{{ $category->parent->name ?? 'Null' }}</td>
                                 <td>
                                     <div class="btn-group">
                                         <div>
-                                            <a href="{{ route('admin.categories.edit', $category->id) }}"
+                                            <a href="{{ route('admin.products.show', $product->id) }}"
+                                                class="btn btn-warning">
+                                                <i class="fas fa-eye"></i>
+                                            </a>
+                                        </div>
+                                        <div style="margin-left: 10px">
+                                            <a href="{{ route('admin.products.edit', $product->id) }}"
                                                 class="btn btn-info">
                                                 <i class="fas fa-pencil-alt"></i>
                                             </a>
                                         </div>
                                         <div style="margin-left: 10px">
                                             <form onclick="return confirm('are you sure ?')"
-                                                action="{{ route('admin.categories.destroy', $category->id) }}"
+                                                action="{{ route('admin.products.destroy', $product->id) }}"
                                                 method="post">
                                                 @csrf
                                                 @method('delete')

@@ -15,9 +15,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('/')->group(function () {
     Route::get('', [\App\Http\Controllers\HomeController::class, 'index'])->name('homepage');
-    Route::get('shop/{slug}', [\App\Http\Controllers\ShopController::class, 'index'])->name('shop.index');
-    Route::get('shop/tag/{slug}', [\App\Http\Controllers\ShopController::class, 'tag'])->name('shop.tag');
-    Route::get('product/{slug}', [\App\Http\Controllers\ProductController::class, 'show'])->name('product.show');
+    Route::get('shop/{slug?}', [\App\Http\Controllers\ShopController::class, 'index'])->name('shop.index');
+    Route::get('shop/tag/{slug?}', [\App\Http\Controllers\ShopController::class, 'tag'])->name('shop.tag');
+    Route::get('product/{product:slug}', [\App\Http\Controllers\ProductController::class, 'show'])->name('product.show');
 
     Route::resource('cart', App\Http\Controllers\CartController::class);
 
@@ -36,6 +36,10 @@ Route::group(['middleware' => ['auth', 'isAdmin'], 'prefix' => 'admin', 'as' => 
 
         //tags
         Route::resource('tags', \App\Http\Controllers\Admin\TagController::class);
+
+        //products
+        Route::resource('products', \App\Http\Controllers\Admin\ProductController::class);
+        Route::post('products/image', [\App\Http\Controllers\Admin\ProductController::class, 'storeImage'])->name('products.storeImage');
     });
 });
 
