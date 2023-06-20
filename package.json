@@ -2,22 +2,34 @@
     "private": true,
     "scripts": {
         "dev": "vite",
-        "build": "vite build"
+        "build": "vite build",
+        "development": "mix",
+        "watch": "mix watch",
+        "watch-poll": "mix watch -- --watch-options-poll=1000",
+        "hot": "mix watch --hot",
+        "prod": "npm run production",
+        "production": "mix --production"
     },
     "devDependencies": {
+        "@babel/preset-react": "^7.22.5",
         "@popperjs/core": "^2.10.2",
         "@vitejs/plugin-vue": "^4.2.3",
         "axios": "^1.1.2",
         "bootstrap": "^5.1.3",
         "fibers": "^5.0.3",
+        "laravel-mix": "^6.0.49",
         "laravel-vite-plugin": "^0.7.8",
         "lodash": "^4.17.19",
         "postcss": "^8.1.14",
+        "resolve-url-loader": "^5.0.0",
         "sass": "^1.32.11",
         "sass-loader": "^11.0.1",
         "vite": "^4.3.9"
     },
     "dependencies": {
-        "@esbuild/win32-x64": "^0.17.19"
+        "npm": "^8.3.0",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "sweetalert": "^2.1.2"
     }
 }
