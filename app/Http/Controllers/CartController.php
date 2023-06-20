@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
+use Darryldecode\Cart\Cart;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
@@ -34,7 +36,22 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $product = Product::FindOrFail($request->productId);
+
+        $item = [
+            'id' => md5($product->id),
+            'name' => $product->name,
+            'price' => $product->price,
+            'quantity' => 1,
+            'associatedModel' => $product
+        ];
+
+        \Cart::add($item);
+
+        return response()->json([
+            'status' => 200,
+            'message' => 'Successfully added to Cart !'
+        ]);
     }
 
     /**
@@ -43,9 +60,16 @@ class CartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function get_carts(Request $request)
     {
-        //
+        $carts = \Cart::getContent();
+        $cart_total = \Cart::getTotal();
+
+        return response()->json([
+            'status' => 200,
+            'carts' => $carts,
+            'cart_total' => $cart_total
+        ]);
     }
 
     /**
@@ -66,9 +90,24 @@ class CartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update_carts(Request $request, $cart_id)
     {
-        //
+        \Cart::update($cart_id, [
+            'quantity' => [
+                'relative' => false,
+                'value' => $request->quantity,
+            ]
+        ]);
+
+        $carts = \Cart::getContent();
+        $cart_total = \Cart::getTotal();
+
+        return response()->json([
+            'status' => 200,
+            'carts' => $carts,
+            'cart_total' => $cart_total,
+            'message' => 'updated successfully !'
+        ]);
     }
 
     /**
@@ -77,8 +116,17 @@ class CartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete_carts($cart_id)
     {
-        //
+        \Cart::remove($cart_id);
+        // $carts = \Cart::getContent();
+
+        $cart_total = \Cart::getTotal();
+
+        return response()->json([
+            'status' => 200,
+            'cart_total' => $cart_total,
+            'message' => 'deleted successfully !'
+        ]);
     }
 }

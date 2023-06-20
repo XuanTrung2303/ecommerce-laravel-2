@@ -12,4 +12,15 @@ class HomeController extends Controller
         $products = Product::with('category')->get(['id', 'name', 'price', 'slug']);
         return view('frontend.homepage', compact('products'));
     }
+
+    public function get_products()
+    {
+
+        $products = Product::with('category')->get(['id', 'name', 'price', 'slug']);
+
+        return response()->json([
+            'status' => 200,
+            'products' => $products,
+        ]);
+    }
 }

@@ -42,9 +42,7 @@
     <script src="{{ asset('frontend/js/mixitup.min.js') }}"></script>
     <script src="{{ asset('frontend/js/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('frontend/js/main.js') }}"></script>
-
-
-
+    <script src="{{ asset('js/app.js') }}"></script>
 </body>
 
 </html>

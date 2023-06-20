@@ -7,7 +7,6 @@
                         <div class="header__top__left">
                             <ul>
                                 <li><i class="fa fa-envelope"></i> oganic@colorlib.com</li>
-                                <li>Free Shipping for all Order of $99</li>
                             </ul>
                         </div>
                     </div>
@@ -58,7 +57,6 @@
                     <nav class="header__menu">
                         <ul>
                             <li class="active"><a href="{{ route('homepage') }}">Home</a></li>
-                            <li><a href="">Pages</a></li>
                             <li><a href="#">Shop</a>
                                 <ul class="header__menu__dropdown">
                                     @foreach ($menu_categories as $menu_category)
@@ -68,18 +66,17 @@
                                     @endforeach
                                 </ul>
                             </li>
-                            <li><a href="./blog.html">Blog</a></li>
-                            <li><a href="./contact.html">Contact</a></li>
+                            <li><a href="{{ route('blog') }}">Blog</a></li>
                         </ul>
                     </nav>
                 </div>
                 <div class="col-lg-3">
                     <div class="header__cart">
                         <ul>
-                            <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                            <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                            <li><a href="{{ route('cart.index') }}"><i class="fa fa-shopping-bag"></i>
+                                </a>
+                            </li>
                         </ul>
-                        <div class="header__cart__price">item: <span>$150.00</span></div>
                     </div>
                 </div>
             </div>
@@ -114,10 +111,6 @@
                     <div class="hero__search">
                         <div class="hero__search__form">
                             <form action="#">
-                                <div class="hero__search__categories">
-                                    All Categories
-                                    <span class="arrow_carrot-down"></span>
-                                </div>
                                 <input type="text" placeholder="What do yo u need?">
                                 <button type="submit" class="site-btn">SEARCH</button>
                             </form>
@@ -127,7 +120,7 @@
                                 <i class="fa fa-phone"></i>
                             </div>
                             <div class="hero__search__phone__text">
-                                <h5>+65 11.188.888</h5>
+                                <h5>+84 0288.000.000</h5>
                                 <span>support 24/7 time</span>
                             </div>
                         </div>
